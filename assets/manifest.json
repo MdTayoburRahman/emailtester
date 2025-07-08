@@ -1,0 +1,71 @@
+{
+  "name": "Email Validator Pro",
+  "short_name": "EmailValidator",
+  "description": "Professional email validation service for businesses and developers. Validate email addresses in real-time with comprehensive checks.",
+  "start_url": "/emailtester/pages/index.php",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#2a5298",
+  "orientation": "portrait-primary",
+  "scope": "/emailtester/",
+  "lang": "en",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "/emailtester/assets/images/logo.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/emailtester/assets/images/logo_transparent.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "/emailtester/assets/images/logo.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["productivity", "utilities", "business"],
+  "screenshots": [
+    {
+      "src": "/emailtester/assets/images/feature_image.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop View"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Validate Email",
+      "short_name": "Validate",
+      "description": "Quick email validation",
+      "url": "/emailtester/pages/index.php",
+      "icons": [
+        {
+          "src": "/emailtester/assets/images/logo.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    },
+    {
+      "name": "API Test",
+      "short_name": "API",
+      "description": "Test API endpoints",
+      "url": "/emailtester/pages/test.php",
+      "icons": [
+        {
+          "src": "/emailtester/assets/images/logo_transparent.png",
+          "sizes": "96x96",
+          "type": "image/png"
+        }
+      ]
+    }
+  ]
+}

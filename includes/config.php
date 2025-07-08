@@ -24,8 +24,8 @@ define('APP_DESCRIPTION', 'Professional Email Validation Tool');
 
 // Paths
 define('BASE_PATH', dirname(__FILE__));
-define('ASSETS_PATH', '/email tester/assets');
-define('API_PATH', '/email tester/api');
+define('ASSETS_PATH', '/emailtester/assets');
+define('API_PATH', '/emailtester/api');
 
 // API Settings
 define('API_TIMEOUT', 10);  // seconds
