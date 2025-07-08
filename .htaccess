@@ -1,0 +1,17 @@
+# Email Validator Pro - Minimal Configuration
+
+# Default page
+
+DirectoryIndex index.php
+
+# Hide sensitive files
+
+<Files "\*.config">
+Order Deny,Allow
+Deny from all
+</Files>
+
+<Files "\*.log">
+Order Deny,Allow  
+ Deny from all
+</Files>
