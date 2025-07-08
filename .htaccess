@@ -1,8 +1,27 @@
-# Email Validator Pro - Minimal Configuration
+# Email Validator Pro - Configuration
 
 # Default page
 
 DirectoryIndex index.php
+
+# Set proper MIME types for CSS and JS files
+
+<IfModule mod_mime.c>
+    AddType text/css .css
+    AddType application/javascript .js
+    AddType image/png .png
+    AddType image/jpeg .jpg .jpeg
+    AddType application/json .json
+</IfModule>
+
+# Enable compression for better performance
+
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE application/json
+</IfModule>
 
 # Hide sensitive files
 
@@ -13,5 +32,5 @@ Deny from all
 
 <Files "\*.log">
 Order Deny,Allow  
- Deny from all
+Deny from all
 </Files>

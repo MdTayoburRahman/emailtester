@@ -22,10 +22,26 @@ define('APP_NAME', 'Email Validator Pro');
 define('APP_VERSION', '2.0.0');
 define('APP_DESCRIPTION', 'Professional Email Validation Tool');
 
-// Paths
+// Paths - Dynamic configuration for different environments
 define('BASE_PATH', dirname(__FILE__));
-define('ASSETS_PATH', '/emailtester/assets');
-define('API_PATH', '/emailtester/api');
+
+// Get the current script directory and build relative paths
+$scriptPath = $_SERVER['SCRIPT_NAME'];
+$scriptDir = dirname($scriptPath);
+
+// Remove /pages if we're in a page subdirectory
+if (basename($scriptDir) === 'pages') {
+    $scriptDir = dirname($scriptDir);
+}
+
+// Ensure we have the correct base path for assets
+$basePath = rtrim($scriptDir, '/');
+if (empty($basePath) || $basePath === '.') {
+    $basePath = '';
+}
+
+define('ASSETS_PATH', $basePath . '/assets');
+define('API_PATH', $basePath . '/api');
 
 // API Settings
 define('API_TIMEOUT', 10);  // seconds

@@ -20,57 +20,6 @@ require_once '../includes/header.php';
 ?>
 
 <style>
-  .main-navigation {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    padding: 10px 0;
-    margin-bottom: 20px;
-    border-radius: 8px;
-  }
-  
-  .nav-container {
-    max-width: 800px;
-    margin: 0 auto;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-  }
-  
-  .nav-brand h2 {
-    color: white;
-    margin: 0;
-  }
-  
-  .nav-brand .version {
-    color: #ccc;
-    font-size: 0.8em;
-  }
-  
-  .nav-menu {
-    display: flex;
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    gap: 20px;
-  }
-  
-  .nav-menu a {
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 8px 16px;
-    border-radius: 4px;
-    transition: background 0.3s ease;
-  }
-  
-  .nav-menu a:hover,
-  .nav-menu .active a {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  
   .test-container {
     max-width: 800px;
     margin: 0 auto;

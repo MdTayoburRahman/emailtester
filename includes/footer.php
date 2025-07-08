@@ -28,7 +28,10 @@ $customJS = isset($customJS) ? $customJS : [];
         <!-- Footer Top Section -->
         <div class="footer-top">
             <div class="footer-section">
-                <h3>Email Validator</h3>
+                <div class="footer-brand">
+                    <img src="<?php echo ASSETS_PATH; ?>/images/logo.png" alt="<?php echo defined('APP_NAME') ? APP_NAME : 'Email Validator'; ?> Logo" class="footer-logo" onerror="this.onerror=null; this.src='../assets/images/logo.png';">
+                    <h3>Email Validator</h3>
+                </div>
                 <p>Professional email validation service for businesses and developers. Validate email addresses in real-time with comprehensive checks.</p>
                 <div class="footer-stats">
                     <div class="stat-item">
@@ -122,6 +125,29 @@ $customJS = isset($customJS) ? $customJS : [];
     padding: 0 20px;
 }
 
+.footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.footer-logo {
+    height: 50px;
+    width: auto;
+    max-width: 50px;
+    object-fit: contain;
+    border-radius: 10px;
+    padding: 8px;
+    background: rgba(255, 255, 255, 0.95);
+    transition: all 0.3s ease;
+}
+
+.footer-logo:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 15px rgba(255, 255, 255, 0.2);
+}
+
 .footer-top {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -132,7 +158,7 @@ $customJS = isset($customJS) ? $customJS : [];
 
 .footer-section h3 {
     color: #4ecdc4;
-    margin-bottom: 15px;
+    margin: 0;
     font-size: 24px;
     font-weight: bold;
 }

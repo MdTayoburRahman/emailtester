@@ -142,6 +142,10 @@ $title = !empty($pageTitle) ? $pageTitle . ' - ' . APP_NAME : APP_NAME;
     <!-- Web App Manifest -->
     <link rel="manifest" href="<?php echo ASSETS_PATH; ?>/manifest.json">
     
+    <!-- Fallback paths for different server configurations -->
+    <link rel="icon" type="image/png" href="../assets/images/logo.png" onerror="this.remove();">
+    <link rel="icon" type="image/png" href="./assets/images/logo.png" onerror="this.remove();">
+    
     <!-- Preconnect for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -152,11 +156,22 @@ $title = !empty($pageTitle) ? $pageTitle . ' - ' . APP_NAME : APP_NAME;
 
     <!-- Default CSS -->
     <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>/css/style.css">
+    
+    <!-- Fallback CSS path for different server configurations -->
+    <link rel="stylesheet" href="../assets/css/style.css" onerror="this.remove();">
+    <link rel="stylesheet" href="./assets/css/style.css" onerror="this.remove();">
 
     <!-- Custom CSS files -->
     <?php foreach ($customCSS as $css): ?>
         <link rel="stylesheet" href="<?php echo ASSETS_PATH; ?>/css/<?php echo $css; ?>">
     <?php endforeach; ?>
+    
+    <!-- Debug: Show paths in development -->
+    <?php if (defined('ENABLE_DEBUG') && ENABLE_DEBUG): ?>
+    <!-- Debug: ASSETS_PATH = <?php echo ASSETS_PATH; ?> -->
+    <!-- Debug: Current URL = <?php echo $_SERVER['REQUEST_URI']; ?> -->
+    <!-- Debug: Script Name = <?php echo $_SERVER['SCRIPT_NAME']; ?> -->
+    <?php endif; ?>
 </head>
 <body>
 
@@ -191,27 +206,65 @@ $title = !empty($pageTitle) ? $pageTitle . ' - ' . APP_NAME : APP_NAME;
     </div>
 </nav>
 
-<!-- Header Styles for Logo -->
+<!-- Header Styles -->
 <style>
+/* Critical CSS - Embedded to ensure it always loads */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    color: #333;
+}
+
+/* Simple Navigation Styles */
+.main-navigation {
+    background: #2c3e50;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 70px;
+}
+
+/* Brand Section */
 .nav-brand {
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 12px;
+    text-decoration: none;
+    color: #ffffff;
+    transition: opacity 0.2s ease;
 }
 
+.nav-brand:hover {
+    color: #ffffff;
+    text-decoration: none;
+    opacity: 0.9;
+}
+
+/* Logo Styling */
 .nav-logo {
     height: 45px;
     width: auto;
     max-width: 45px;
     object-fit: contain;
-    transition: all 0.3s ease;
+    border-radius: 8px;
+    padding: 6px;
+    background: rgba(255, 255, 255, 0.95);
 }
 
-.nav-logo:hover {
-    transform: scale(1.1);
-    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.2));
-}
-
+/* Brand Text */
 .brand-text {
     display: flex;
     flex-direction: column;
@@ -220,42 +273,117 @@ $title = !empty($pageTitle) ? $pageTitle . ' - ' . APP_NAME : APP_NAME;
 
 .brand-text h2 {
     margin: 0;
-    font-size: 20px;
-    font-weight: bold;
-    color: inherit;
+    font-size: 22px;
+    font-weight: 700;
+    color: #ffffff;
     line-height: 1;
 }
 
 .brand-text .version {
-    font-size: 12px;
-    opacity: 0.8;
-    font-weight: 400;
-    line-height: 1;
+    font-size: 11px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.7);
+    background: rgba(255, 255, 255, 0.15);
+    padding: 2px 6px;
+    border-radius: 10px;
 }
 
-/* Make logo clickable link */
-.nav-brand {
-    cursor: pointer;
+/* Navigation Menu */
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 8px;
+}
+
+.nav-menu li {
+    position: relative;
+}
+
+.nav-menu a {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    color: rgba(255, 255, 255, 0.9);
     text-decoration: none;
-    color: inherit;
+    border-radius: 6px;
     transition: all 0.3s ease;
+    font-weight: 500;
+    font-size: 14px;
 }
 
-.nav-brand:hover {
-    color: inherit;
-    text-decoration: none;
+.nav-menu a:hover {
+    color: #ffffff;
+    background: rgba(255, 255, 255, 0.15);
 }
 
-.nav-brand:hover .nav-logo {
-    transform: scale(1.05);
+.nav-menu li.active a {
+    background: #3498db;
+    color: #ffffff;
 }
 
-.nav-brand:hover .brand-text h2 {
-    color: #4ecdc4;
+/* Icon Styling */
+.nav-icon {
+    font-size: 16px;
 }
 
-/* Responsive adjustments */
+.nav-text {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Responsive Design */
 @media (max-width: 768px) {
+    .nav-container {
+        padding: 0 15px;
+        min-height: 60px;
+    }
+    
+    .nav-logo {
+        height: 40px;
+        max-width: 40px;
+    }
+    
+    .brand-text h2 {
+        font-size: 20px;
+    }
+    
+    .brand-text .version {
+        font-size: 10px;
+        padding: 1px 6px;
+    }
+    
+    .nav-brand {
+        gap: 10px;
+    }
+    
+    .nav-menu {
+        gap: 5px;
+    }
+    
+    .nav-menu a {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+    
+    .nav-icon {
+        font-size: 15px;
+    }
+    
+    .nav-text {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-container {
+        flex-wrap: wrap;
+        min-height: auto;
+        padding: 10px 15px;
+    }
+    
     .nav-logo {
         height: 35px;
         max-width: 35px;
@@ -265,27 +393,43 @@ $title = !empty($pageTitle) ? $pageTitle . ' - ' . APP_NAME : APP_NAME;
         font-size: 18px;
     }
     
-    .brand-text .version {
-        font-size: 10px;
-    }
-    
-    .nav-brand {
-        gap: 10px;
-    }
-}
-
-@media (max-width: 480px) {
-    .nav-logo {
-        height: 30px;
-        max-width: 30px;
-    }
-    
-    .brand-text h2 {
-        font-size: 16px;
-    }
-    
     .nav-brand {
         gap: 8px;
     }
+    
+    .nav-menu {
+        width: 100%;
+        justify-content: center;
+        margin-top: 10px;
+        gap: 8px;
+    }
+    
+    .nav-menu a {
+        padding: 8px 10px;
+        border-radius: 4px;
+    }
+}
+
+/* Subtle scroll effect */
+.main-navigation.scrolled {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 </style>
+
+<!-- Simple Header JavaScript -->
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const navigation = document.querySelector('.main-navigation');
+    
+    // Simple scroll effect for navigation
+    window.addEventListener('scroll', function() {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        if (scrollTop > 50) {
+            navigation.classList.add('scrolled');
+        } else {
+            navigation.classList.remove('scrolled');
+        }
+    });
+});
+</script>
