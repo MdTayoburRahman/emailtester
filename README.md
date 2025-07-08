@@ -5,7 +5,7 @@ A professional, well-structured email validation tool built with PHP, HTML, CSS,
 ## 📁 Project Structure
 
 ```
-email tester/
+emailtester/
 ├── api/                      # API endpoints
 │   └── validate.php         # Email validation API
 ├── assets/                  # Static assets
@@ -15,18 +15,20 @@ email tester/
 │       └── script.js       # Main JavaScript
 ├── includes/                # PHP includes and utilities
 │   ├── config.php          # Configuration settings
-│   └── functions.php       # Common functions and utilities
+│   ├── config.local.php    # Local configuration (if exists)
+│   ├── functions.php       # Common functions and utilities
+│   ├── header.php          # Header template with navigation
+│   └── footer.php          # Footer template with links
 ├── pages/                   # Application pages
 │   ├── index.php           # Main application page
-│   ├── diagnostics.php     # System diagnostics page
-│   └── test.php            # API testing page
+│   ├── test.php            # API testing page
+│   ├── developer.php       # Developer information
+│   ├── privacy.php         # Privacy policy
+│   └── terms.php           # Terms of service
 ├── logs/                    # Log files (auto-created)
-├── cache/                   # Cache directory (auto-created)
-├── backups/                 # Backup directory (auto-created)
 ├── uploads/                 # Upload directory (auto-created)
 ├── index.php               # Entry point (redirects to pages/index.php)
 ├── health.php              # Health check endpoint
-├── .htaccess               # Apache configuration
 └── README.md               # This documentation
 ```
 
@@ -43,16 +45,18 @@ email tester/
 
 ### User Interface
 
-- **Modern Design**: Responsive, mobile-friendly interface
+- **Modern Design**: Responsive, mobile-friendly interface with beautiful footer
+- **Template System**: Modular header and footer templates
 - **Navigation System**: Clean navigation between pages
 - **Real-time Feedback**: Instant validation results
 - **Export Options**: Copy to clipboard and download reports
-- **Debug Mode**: Advanced debugging and diagnostics
+- **Debug Mode**: Advanced debugging capabilities
 - **Progress Tracking**: Visual feedback for long operations
 
 ### System Features
 
-- **Modular Architecture**: Well-organized, maintainable code
+- **Modular Architecture**: Well-organized, maintainable code with template separation
+- **Template System**: Reusable header and footer components
 - **Configuration Management**: Centralized settings
 - **Error Handling**: Comprehensive error management
 - **Security Features**: Input sanitization and validation
@@ -74,13 +78,13 @@ email tester/
 
    ```bash
    # For XAMPP
-   C:\xampp\htdocs\email-validator\
+   C:\xampp\htdocs\emailtester\
 
    # For WAMP
-   C:\wamp64\www\email-validator\
+   C:\wamp64\www\emailtester\
 
    # For Linux/Apache
-   /var/www/html/email-validator/
+   /var/www/html/emailtester/
    ```
 
 2. **Set Permissions** (Linux/Mac only)
@@ -99,9 +103,9 @@ email tester/
    - Adjust timeouts, limits, and feature flags as needed
 
 4. **Access the Application**
-   - Open: `http://localhost/email-validator/`
-   - Direct access: `http://localhost/email-validator/pages/`
-   - Or: `http://your-server.com/email-validator/`
+   - Open: `http://localhost/emailtester/`
+   - Direct access: `http://localhost/emailtester/pages/`
+   - Or: `http://your-server.com/emailtester/`
 
 ## 📄 Page Overview
 
@@ -113,14 +117,6 @@ email tester/
 - Real-time results display
 - Export functionality (copy to clipboard, download reports)
 
-### 🔧 Diagnostics (`pages/diagnostics.php`)
-
-- System status monitoring
-- Server information display
-- Performance testing
-- Network analysis
-- Troubleshooting tools
-
 ### 🧪 API Test (`pages/test.php`)
 
 - API endpoint testing
@@ -128,6 +124,24 @@ email tester/
 - Performance benchmarking
 - Custom email testing
 - Batch operation testing
+
+### 👨‍💻 Developer Info (`pages/developer.php`)
+
+- Developer contact information
+- Project details and technical specifications
+- Professional profile and links
+
+### 🔒 Privacy Policy (`pages/privacy.php`)
+
+- Data protection policies
+- User privacy rights
+- Information collection practices
+
+### 📄 Terms of Service (`pages/terms.php`)
+
+- Service usage terms
+- Legal agreements
+- User responsibilities
 
 ### 🏥 Health Check (`health.php`)
 
@@ -140,8 +154,10 @@ email tester/
 ### Direct Access
 
 - **Main Application**: `/pages/index.php`
-- **Diagnostics**: `/pages/diagnostics.php`
 - **API Testing**: `/pages/test.php`
+- **Developer Info**: `/pages/developer.php`
+- **Privacy Policy**: `/pages/privacy.php`
+- **Terms of Service**: `/pages/terms.php`
 - **Health Check**: `/health.php`
 
 ### Root Redirect
@@ -158,8 +174,8 @@ define('APP_NAME', 'Email Validator Pro');
 define('APP_VERSION', '2.0.0');
 
 // Paths
-define('ASSETS_PATH', '/email tester/assets');
-define('API_PATH', '/email tester/api');
+define('ASSETS_PATH', '/emailtester/assets');
+define('API_PATH', '/emailtester/api');
 
 // Timeouts & Limits
 define('SMTP_TIMEOUT', 10);        // SMTP connection timeout
@@ -237,12 +253,15 @@ Content-Type: application/json
 
 - Add new validation rules in `api/validate.php`
 - Extend features in `assets/js/script.js`
-- Create new pages using the template system
+- Create new pages using the header/footer template system
+- Customize header in `includes/header.php`
+- Modify footer in `includes/footer.php`
 
 ### Configuration
 
 - Update `includes/config.php` for global settings
 - Modify `includes/functions.php` for utility functions
+- Use `includes/header.php` and `includes/footer.php` for page templates
 
 ## 🔍 Troubleshooting
 
@@ -252,7 +271,7 @@ Content-Type: application/json
 
    - Check PHP error logs
    - Verify file permissions
-   - Test via `/pages/diagnostics.php`
+   - Test via `/pages/test.php`
 
 2. **SMTP Connection Failed**
 
@@ -270,12 +289,14 @@ Content-Type: application/json
    - Ensure pages are in `/pages/` directory
    - Check relative path configuration
    - Verify asset paths in includes
+   - Ensure header/footer templates are properly included
 
 ### Debug Mode
 
 - Enable in `includes/config.php`: `define('ENABLE_DEBUG', true);`
 - View detailed logs in browser console
-- Use diagnostics page for system analysis
+- Use test page for API analysis
+- Check header/footer template rendering
 
 ## 🚦 Performance
 
@@ -334,10 +355,10 @@ Content-Type: application/json
 ### Resources
 
 - Check `/health.php` for system status
-- Use `/pages/diagnostics.php` for detailed analysis
 - Test API endpoints via `/pages/test.php`
 - Review PHP error logs
 - Monitor server resources
+- Verify template includes are working properly
 
 ### Common Solutions
 
@@ -357,7 +378,9 @@ This project is open source and available under the MIT License.
 ### 🔄 Recent Updates
 
 - Organized pages into `/pages/` directory
-- Improved project structure and maintainability
-- Enhanced navigation system
+- Implemented modular header and footer template system
+- Removed diagnostics page for streamlined navigation
+- Enhanced navigation system with modern footer design
 - Updated API path handling
 - Added comprehensive health monitoring
+- Improved project structure and maintainability
